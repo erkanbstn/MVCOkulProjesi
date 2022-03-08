@@ -1,0 +1,53 @@
+﻿@model MVCOkulSite.Models.Entity.Notlar
+@{
+    ViewBag.Title = "NotGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>NotGuncelle</h2>
+
+@using (Html.BeginForm("NotGuncelle", "Notlar", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.NotID)
+        @Html.TextBoxFor(m => m.NotID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.DersID)
+        @Html.TextBoxFor(m => m.DersID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.OgrID)
+        @Html.TextBoxFor(m => m.OgrID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Sinav1)
+        @Html.TextBoxFor(m => m.Sinav1, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Sinav2)
+        @Html.TextBoxFor(m => m.Sinav2, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Sinav3)
+        @Html.TextBoxFor(m => m.Sinav3, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Proje)
+        @Html.TextBoxFor(m => m.Proje, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Ortalama)
+        @Html.TextBoxFor(m => m.Ortalama, new {@Value = @ViewBag.ort, @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Durum)
+        @Html.TextBoxFor(m => m.Durum, new { @Value = @ViewBag.durum, @class = "form-control" })
+        <br />
+    </div>
+    @Html.HiddenFor(m => m.NotID)
+    <div>
+        <button type="submit" name="Islem" value="Hesapla" class="btn btn-danger">
+            Hesapla
+        </button>
+        <button type="submit" name="Islem" value="Guncelle" class="btn btn-primary">
+            Güncelle
+        </button>
+    </div>
+
+
+
+
+}

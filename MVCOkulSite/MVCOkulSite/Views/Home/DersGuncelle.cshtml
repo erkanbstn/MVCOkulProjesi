@@ -1,0 +1,26 @@
+﻿@model MVCOkulSite.Models.Entity.Dersler
+@{
+    ViewBag.Title = "DersGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DersGuncelle</h2>
+@using (Html.BeginForm("Guncelle", "Home", FormMethod.Post))
+{
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.DersID)
+        @Html.TextBoxFor(m => m.DersID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.DersAd)
+        @Html.TextBoxFor(m => m.DersAd, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(m => m.DersID)
+    <br />
+
+    <div>
+        <button class="btn btn-success">
+            Güncelle
+        </button>
+    </div>
+}

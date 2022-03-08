@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCOkulModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Dersler">
+    <Key>
+      <PropertyRef Name="DersID" />
+    </Key>
+    <Property Name="DersID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DersAd" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Kulupler">
+    <Key>
+      <PropertyRef Name="KulupID" />
+    </Key>
+    <Property Name="KulupID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KulupAd" Type="varchar(max)" />
+    <Property Name="KulupKontenjan" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="Notlar">
+    <Key>
+      <PropertyRef Name="NotID" />
+    </Key>
+    <Property Name="NotID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DersID" Type="tinyint" />
+    <Property Name="OgrID" Type="tinyint" />
+    <Property Name="Sinav1" Type="tinyint" />
+    <Property Name="Sinav2" Type="tinyint" />
+    <Property Name="Sinav3" Type="tinyint" />
+    <Property Name="Proje" Type="tinyint" />
+    <Property Name="Ortalama" Type="decimal" Precision="7" Scale="2" />
+    <Property Name="Durum" Type="bit" />
+  </EntityType>
+  <EntityType Name="Ogrenciler">
+    <Key>
+      <PropertyRef Name="OgrID" />
+    </Key>
+    <Property Name="OgrID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OgrAd" Type="varchar" MaxLength="50" />
+    <Property Name="OgrSoyad" Type="varchar" MaxLength="50" />
+    <Property Name="OgrFotograf" Type="varchar(max)" />
+    <Property Name="OgrCinsiyet" Type="varchar" MaxLength="5" />
+    <Property Name="OgrKulup" Type="tinyint" />
+  </EntityType>
+  <Association Name="FK_Notlar_Dersler">
+    <End Role="Dersler" Type="Self.Dersler" Multiplicity="0..1" />
+    <End Role="Notlar" Type="Self.Notlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dersler">
+        <PropertyRef Name="DersID" />
+      </Principal>
+      <Dependent Role="Notlar">
+        <PropertyRef Name="DersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notlar_Ogrenciler">
+    <End Role="Ogrenciler" Type="Self.Ogrenciler" Multiplicity="0..1" />
+    <End Role="Notlar" Type="Self.Notlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogrenciler">
+        <PropertyRef Name="OgrID" />
+      </Principal>
+      <Dependent Role="Notlar">
+        <PropertyRef Name="OgrID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogrenciler_Kulupler">
+    <End Role="Kulupler" Type="Self.Kulupler" Multiplicity="0..1" />
+    <End Role="Ogrenciler" Type="Self.Ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kulupler">
+        <PropertyRef Name="KulupID" />
+      </Principal>
+      <Dependent Role="Ogrenciler">
+        <PropertyRef Name="OgrKulup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MVCOkulModelStoreContainer">
+    <EntitySet Name="Dersler" EntityType="Self.Dersler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kulupler" EntityType="Self.Kulupler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notlar" EntityType="Self.Notlar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ogrenciler" EntityType="Self.Ogrenciler" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Notlar_Dersler" Association="Self.FK_Notlar_Dersler">
+      <End Role="Dersler" EntitySet="Dersler" />
+      <End Role="Notlar" EntitySet="Notlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notlar_Ogrenciler" Association="Self.FK_Notlar_Ogrenciler">
+      <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+      <End Role="Notlar" EntitySet="Notlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogrenciler_Kulupler" Association="Self.FK_Ogrenciler_Kulupler">
+      <End Role="Kulupler" EntitySet="Kulupler" />
+      <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

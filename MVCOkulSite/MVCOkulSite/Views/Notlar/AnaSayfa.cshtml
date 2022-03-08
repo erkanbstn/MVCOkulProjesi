@@ -1,0 +1,61 @@
+﻿@using MVCOkulSite.Models.Entity;
+@model List<Notlar>
+@{
+    ViewBag.Title = "AnaSayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            NOT ID
+        </th>
+        <th>
+            ÖĞRENCİ
+        </th>
+        <th>
+            DERS
+        </th>
+        <th>
+            SINAV 1
+        </th>
+        <th>
+            SINAV 2
+        </th>
+        <th>
+            SINAV 3
+        </th>
+        <th>
+            PROJE
+        </th>
+        <th>
+            ORTALAMA
+        </th>
+        <th>
+            DURUM
+        </th>
+        <th>
+            İŞLEMLER
+        </th>
+    </tr>
+    <tbody>
+        @foreach (var not in Model)
+        {
+        <tr>
+            <td>@not.NotID</td>
+            <td>@not.Ogrenciler.OgrAd</td>
+            <td>@not.Dersler.DersAd</td>
+            <td>@not.Sinav1</td>
+            <td>@not.Sinav2</td>
+            <td>@not.Sinav3</td>
+            <td>@not.Proje</td>
+            <td>@not.Ortalama</td>
+            <td>@not.Durum</td>
+            <td>
+                <a href="/Notlar/NotGuncelle/@not.NotID" class="btn btn-success">GÜNCELLE</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<a href="/Notlar/YeniNot" class="btn btn-primary">Yeni Not Ekle</a>

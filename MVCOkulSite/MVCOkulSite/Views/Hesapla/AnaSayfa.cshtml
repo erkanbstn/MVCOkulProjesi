@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "AnaSayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Not Hesaplama</h2>
+
+<form class="form-group" method="post">
+    <div style="font-size: 20px">
+        Sayı 1 : <input class="form-control" type="text" name="s1"  />
+        Sayı 2 : <input class="form-control" type="text" name="s2"  />
+    </div>
+    <br />
+    <button style="font-size: 25px" class="btn btn-warning">Hesapla</button>
+    <br />
+    <br />
+    <div style="font-size: 40px">
+        Sonuç : @ViewBag.snc
+    </div>
+
+</form>
